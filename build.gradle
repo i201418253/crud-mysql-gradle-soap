@@ -42,6 +42,7 @@ dependencies {
 task jaxb {
 	System.setProperty('javax.xml.accessExternalSchema', 'all')
     def jaxbTargetDir = file("src/main/java")
+    def jaxbTargetdir1 = file("src/main/java")
 
     doLast {
 
@@ -52,11 +53,17 @@ task jaxb {
         )
 
         ant.jaxbTargetDir = jaxbTargetDir
+        ant.jaxbTargetdir1 = jaxbTargetdir1
 
         ant.xjc(
 			destdir: '${jaxbTargetDir}',
 			package: 'com.concretepage.SpringBootWSProducer.articles',
 			schema: 'src/main/resources/xsd/articles.xsd'
+        )
+        ant.xjc(
+			destdir: '${jaxbTargetdir1}',
+			package: 'com.concretepage.SpringBootWSProducer.personas',
+			schema: 'src/main/resources/xsd/persona.xsd'
         )
     }
 }

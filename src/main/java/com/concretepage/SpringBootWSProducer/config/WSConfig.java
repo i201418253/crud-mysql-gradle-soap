@@ -35,4 +35,17 @@ public class WSConfig extends WsConfigurerAdapter {
 	public XsdSchema articlesSchema() {
 		return new SimpleXsdSchema(new ClassPathResource("xsd/articles.xsd"));
 	}
+	@Bean(name = "personas")
+	public DefaultWsdl11Definition defaultWsdl11Definition1(XsdSchema articlesSchema) {
+		DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
+		wsdl11Definition.setPortTypeName("ArticlesPort");
+		wsdl11Definition.setLocationUri("/soapws");
+		wsdl11Definition.setTargetNamespace("http://www.concretepage.com/personas");
+		wsdl11Definition.setSchema(articlesSchema);
+		return wsdl11Definition;
+	}
+	@Bean
+	public XsdSchema articlesSchema1() {
+		return new SimpleXsdSchema(new ClassPathResource("xsd/persona.xsd"));
+	}
 }
